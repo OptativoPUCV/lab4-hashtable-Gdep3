@@ -100,6 +100,18 @@ Pair *searchMap(HashMap *map, char *key) {
   return NULL;
 }
 
-Pair *firstMap(HashMap *map) { return NULL; }
+Pair *firstMap(HashMap *map) {
+  if (map == NULL || map->size == 0) {
+    return NULL;
+  }
+  while (map->current != -1) {
+    if (map->buckets[map->current] != NULL &&
+        map->buckets[map->current]->key != NULL) {
+      return map->buckets[map->current];
+    }
+    map->current = (map->current + 1) % map->capacity;
+  }
+  return NULL;
+}
 
 Pair *nextMap(HashMap *map) { return NULL; }
