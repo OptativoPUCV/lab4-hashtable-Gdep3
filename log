@@ -67,3 +67,20 @@ Sat 27 Apr 2024 03:13:21 AM UTC:
  tests:  17|0
 total_score: 70/70
 cb9993f
+Sat 27 Apr 2024 03:18:19 AM UTC: 
+ hashmap.c | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
+In file included from test.c:4:
+hashmap.c: In function ‘nextMap’:
+hashmap.c:135:36: error: expected ‘;’ before ‘}’ token
+  135 |     pos = (pos + 1) % map->capacity
+      |                                    ^
+      |                                    ;
+  136 |   } while(map->buckets[pos] == NULL || map->buckets[pos]->key == NULL);
+      |   ~                                 
+hashmap.c:133:8: error: unused variable ‘aux’ [-Werror=unused-variable]
+  133 |   long aux = pos;
+      |        ^~~
+cc1: all warnings being treated as errors
+Compilation failed
+e304f9a
