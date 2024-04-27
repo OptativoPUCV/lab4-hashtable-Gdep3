@@ -127,16 +127,16 @@ Pair *firstMap(HashMap *map) {
   return NULL;
 }
 
-Pair *nextMap(HashMap *map) {
-  if (map == NULL || map->size == 0 || map->current == -1) {
-    return NULL;
-  }
-  map->current = (map->current + 1) % map->capacity;
-  while (map->current != -1) {
-    if (map->buckets[map->current] != NULL && map->buckets[map->current]->key != NULL) {
-      return map->buckets[map->current];
+Pair * nextMap(HashMap * map) 
+{
+  long pos = map->current;
+  long aux = pos;
+  do {
+    pos = (pos + 1) % map->capacity;
+    if(aux > pos) {
+      return NULL;
     }
-    map->current = (map->current + 1) % map->capacity;
-  }
-  return NULL;
+  } while(map->buckets[pos] == NULL || map->buckets[pos]->key == NULL);
+  map->current = pos;
+  return map->buckets[pos];
 }
